@@ -1,0 +1,3873 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.reuneker.nl/files/runcalc/#predictors -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Running calculators</title>
+    <style>
+        /*https://coolors.co/palettes/trending*/
+        /*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;600&display=swap'); */
+        
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, sans-serif;
+            line-height: 2em;
+            font-size: 0.98em;
+            font-weight: 300;
+            /* font-size: 1.4vw; */
+            letter-spacing: 0.5px;
+        }
+        
+        b,
+        strong,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .strong {
+            font-weight: 800;
+        }
+        
+        h1,
+        h2,
+        .large-text {
+            text-align: left;
+            font-size: 1.2em;
+        }
+        
+        img.round {
+            border-radius: 50%;
+        }
+        
+        img.small {
+            width: 60%;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .text-success {
+            color: #28a745;
+        }
+        
+        .text-danger {
+            color: #dc3545;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        main a:hover {
+            text-decoration: underline;
+        }
+        
+        a[target="_blank"]:after {
+            /*content: " (...)";*/
+            font-family: "Material Icons";
+            content: " open_in_new";
+            text-decoration: none;
+        }
+        
+        body {
+            background-color: #fefefe;
+        }
+        
+        p,
+        input,
+        select,
+        h3,
+        textarea {
+            margin-bottom: 20px;
+        }
+        
+        label,
+        button {
+            display: block;
+            /*display: inline-block;*/
+        }
+        
+        input,
+        select {
+            width: 96%;
+            margin: 0 auto;
+        }
+        /*select {text-indent: 50%;}*/
+        
+        .box {
+            max-width: 1600px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 100%;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-left {
+            width: 80%;
+        }
+        
+        .flex-right {
+            width: 20%;
+            text-align: right;
+        }
+        
+        .totop {
+            text-align: right;
+        }
+        
+        .totop a {
+            text-decoration: none;
+        }
+        
+        section {
+            /*border-bottom: 2px solid #B0BEC5;*/
+            padding-bottom: 0px;
+            margin-bottom: 50px;
+        }
+        
+        header {
+            position: fixed;
+        }
+        
+        main {
+            margin-left: 20%;
+        }
+        
+        header,
+        aside {
+            width: 18%;
+            padding: 1%;
+        }
+        
+        aside .button {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        aside {
+            text-align: justify;
+            word-break: break-word;
+        }
+        
+        main {
+            width: 58%;
+            padding: 1%;
+            text-align: justify;
+        }
+        
+        footer {
+            width: 98%;
+            padding: 1%;
+            text-align: center;
+        }
+        
+        header ul {
+            list-style-type: none;
+        }
+        
+        .indent {
+            list-style-type: none;
+            word-break: break-all;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+        
+        .dont-break-out {
+            /*https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container*/
+            /* These are technically the same, but use both */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            /* This is the dangerous one in WebKit, as it breaks things wherever */
+            word-break: break-all;
+            /* Instead use this non-standard one: */
+            word-break: break-word;
+            /* Adds a hyphen where the word breaks, if supported (No Blink) */
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        
+        .material-icons {
+            display: inline-flex;
+            vertical-align: top;
+            margin-right: 5px;
+        }
+        
+        a {
+            color: #427aa1;
+        }
+        
+        a:visited,
+        a:hover {
+            color: #05668d;
+        }
+        
+        textarea {
+            width: 96%;
+            height: 100px;
+            padding: 0 2%;
+            border: 0px solid #666;
+            background-color: #f6f6f6;
+            border-radius: 2px;
+            resize: none;
+        }
+        
+        aside input {
+            background-color: #f6f6f6;
+            width: 96%;
+            padding: 0 2%;
+            border-radius: 2px;
+            border: 0px solid black;
+        }
+        
+        .input {
+            background-color: #f6f6f6;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 2% 2%;
+        }
+        
+        nav a {
+            display: inline-block;
+            width: 92%;
+            padding: 5px 2%;
+            /*background-color: #ECEFF1;*/
+            border-radius: 5px;
+            margin-bottom: 7px;
+            color: black !important;
+            text-decoration: none;
+        }
+        
+        header .bar,
+        aside .bar {
+            /*background-color: #457b9d;*/
+        }
+        
+        .bar {
+            /*background-color: #457b9d;color: #fff !important;padding: 5px 4%;margin-bottom: 2px;border-radius: 5px;*/
+        }
+        
+        nav a.active {
+            background-color: #b0bec5;
+            color: #fefefe !important;
+        }
+        
+        nav a:hover,
+        button:hover,
+        .button:hover {
+            background-color: #007bff;
+            color: #fefefe !important;
+            cursor: pointer;
+        }
+        
+        input,
+        select,
+        button,
+        .button {
+            height: 35px;
+            padding: 0 5px;
+        }
+        
+        input[type="radio"] {
+            height: 15px;
+            padding: 0px;
+            margin: 0px;
+            width: 20px;
+        }
+        
+        header li label {
+            display: inline;
+        }
+        
+        button,
+        .button {
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 0 15px;
+            -webkit-appearance: none;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .center button {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+        
+        p.result {
+            font-size: 5em;
+            font-weight: bold;
+            line-height: 1em;
+        }
+        
+        .invisible {
+            display: none !important;
+        }
+        
+        .visible {
+            display: inherit;
+        }
+        
+        .firststate {
+            display: inherit;
+        }
+        
+        .secondstate {
+            display: none;
+        }
+        
+        #toggler:hover {
+            cursor: pointer;
+        }
+        
+        .align-left {
+            text-align: left;
+        }
+        
+        .input table {
+            width: 92%;
+            padding: 0 4%;
+            text-align: left;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        
+        .input table th {
+            font-weight: bold;
+        }
+        
+        .input table td,
+        .right {
+            text-align: right;
+        }
+        
+        .input table th[scope="row"] {
+            font-style: italic;
+            font-weight: normal;
+        }
+        /* media queries */
+        
+        @media (max-width: 760px) {
+            header,
+            main,
+            footer,
+            aside {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            main input,
+            main select {
+                display: inline-block;
+                width: 100%;
+            }
+            header {
+                position: static;
+            }
+            main {
+                margin-left: 0;
+            }
+            .row {
+                flex-direction: column;
+            }
+            .firststate {
+                display: none;
+            }
+            .secondstate {
+                display: inherit;
+            }
+        }
+    </style>
+    <link href="./Running calculators_files/icon" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="Easy to use calculators and predictors for running, such as mile to kilometre, pace to speed, pace to lap times conversion and calculation of pace percentage." />
+    <link rel="icon" href="https://www.reuneker.nl/files/runcalc/images/running.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://www.reuneker.nl/files/runcalc/images/running.png" />
+    <style>
+        .wticons {
+            line-height: 1;
+        }
+        
+        .wticons:before {
+            font-family: wticons !important;
+            font-style: normal;
+            font-weight: normal !important;
+            vertical-align: top;
+        }
+        
+        .wticon-account:before {
+            content: "\f101";
+        }
+        
+        .wticon-add:before {
+            content: "\f102";
+        }
+        
+        .wticon-cardResizeDrag:before {
+            content: "\f103";
+        }
+        
+        .wticon-casual:before {
+            content: "\f104";
+        }
+        
+        .wticon-check:before {
+            content: "\f105";
+        }
+        
+        .wticon-checkSmall:before {
+            content: "\f106";
+        }
+        
+        .wticon-chevron:before {
+            content: "\f107";
+        }
+        
+        .wticon-copy:before {
+            content: "\f108";
+        }
+        
+        .wticon-copySmall:before {
+            content: "\f109";
+        }
+        
+        .wticon-dismiss:before {
+            content: "\f10a";
+        }
+        
+        .wticon-downChevron:before {
+            content: "\f10b";
+        }
+        
+        .wticon-error:before {
+            content: "\f10c";
+        }
+        
+        .wticon-expand:before {
+            content: "\f10d";
+        }
+        
+        .wticon-feedback:before {
+            content: "\f10e";
+        }
+        
+        .wticon-filledDownArrow:before {
+            content: "\f10f";
+        }
+        
+        .wticon-find:before {
+            content: "\f110";
+        }
+        
+        .wticon-formal:before {
+            content: "\f111";
+        }
+        
+        .wticon-gift:before {
+            content: "\f112";
+        }
+        
+        .wticon-grayLogo:before {
+            content: "\f113";
+        }
+        
+        .wticon-ignore:before {
+            content: "\f114";
+        }
+        
+        .wticon-info:before {
+            content: "\f115";
+        }
+        
+        .wticon-leftChevron:before {
+            content: "\f116";
+        }
+        
+        .wticon-logo:before {
+            content: "\f117";
+        }
+        
+        .wticon-love:before {
+            content: "\f118";
+        }
+        
+        .wticon-noRecommendations:before {
+            content: "\f119";
+        }
+        
+        .wticon-paste:before {
+            content: "\f11a";
+        }
+        
+        .wticon-pin:before {
+            content: "\f11b";
+        }
+        
+        .wticon-premium:before {
+            content: "\f11c";
+        }
+        
+        .wticon-premiumDetail:before {
+            content: "\f11d";
+        }
+        
+        .wticon-premiumFull:before {
+            content: "\f11e";
+        }
+        
+        .wticon-recommendationLight:before {
+            content: "\f11f";
+        }
+        
+        .wticon-recommendationLightCard:before {
+            content: "\f120";
+        }
+        
+        .wticon-recommendationLightNoSuggestions:before {
+            content: "\f121";
+        }
+        
+        .wticon-refine:before {
+            content: "\f122";
+        }
+        
+        .wticon-rewrite:before {
+            content: "\f123";
+        }
+        
+        .wticon-rightChevron:before {
+            content: "\f124";
+        }
+        
+        .wticon-rocket:before {
+            content: "\f125";
+        }
+        
+        .wticon-sentenceExamples:before {
+            content: "\f126";
+        }
+        
+        .wticon-settings:before {
+            content: "\f127";
+        }
+        
+        .wticon-shorten:before {
+            content: "\f128";
+        }
+        
+        .wticon-tutorial:before {
+            content: "\f129";
+        }
+        
+        .wticon-unlock:before {
+            content: "\f12a";
+        }
+        
+        .wticon-warn:before {
+            content: "\f12b";
+        }
+        
+        .wticon-WordtuneButton:before {
+            content: "\f12c";
+        }
+        
+        .wticon-x:before {
+            content: "\f12d";
+        }
+    </style>
+    <style data-styled="active" data-styled-version="5.3.0"></style>
+</head>
+
+<body>
+    <div class="box">
+        <header>
+            <nav>
+                <div class="flex bar">
+                    <h1 class="flex-left">
+                        <!--<span class="material-icons">run_circle</span>-->Running calculators
+                    </h1>
+                    <div class="flex-right large-text" id="toggler">☰</div>
+                </div>
+                <ul id="toggle" class="firststate">
+                    <li>
+                        <a href="https://www.reuneker.nl/files/runcalc/#home"><span class="material-icons">home</span>Home</a
+              >
+            </li>
+            <!--<li><a href="#milekm" class="active">Mile-km pace</a></li>-->
+                    <li>
+                        <a href="https://www.reuneker.nl/files/runcalc/#milekm"><span class="material-icons">compare_arrows</span>Mile-km
+                pace</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#percentage"
+                ><span class="material-icons">calculate</span>Pace percentage</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#tdp"
+                ><span class="material-icons">speed</span>Time-distance to
+                pace</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#speed"
+                ><span class="material-icons">swap_vert</span>Pace to speed</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#lap"
+                ><span class="material-icons">repeat</span>Pace to lap time</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#yasso"
+                ><span class="material-icons">link</span>Yasso</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#vo2max"
+                ><span class="material-icons">science</span>Vo2Max</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#training"
+                ><span class="material-icons">assessment</span>Training paces</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#predictors"
+                ><span class="material-icons">psychology</span>Riegel
+                predictor</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/runcalc/#cameron"
+                ><span class="material-icons">receipt_long</span>Cameron
+                predictor</a
+              >
+            </li>
+            <li>
+              <a href="https://www.reuneker.nl/files/blog/" target="_blank"
+                ><span class="material-icons">book</span>Blog</a
+              >
+            </li>
+            <!--<li><span>Preferred unit: </span><input type="radio" name="glob_unit" id="glob_km" value="glob_km" checked /><label for="glob_km">km</label><input type="radio" name="glob_unit" id="glob_ml" value="glob_ml" /><label for="glob_ml">mile</label></li>-->
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="home">
+          <h2 class="bar">Home</h2>
+          <p>
+            Did you ever want to convert mile pace to km pace? Or calculate your
+            mile or kilometre pace for yasso's? Or perhaps calculate percentages
+            of pace? You've come to the right place! Here you can perform all
+            kinds of running calculations here.
+          </p>
+          <p>
+            New features and calculators are announced and explained in the
+            <a href="https://www.reuneker.nl/files/blog/" target="_blank"
+              >blog</a
+            >, so be sure to check it out.
+          </p>
+          <p>Happy running!<br />Alex</p>
+          <p class="right">
+            Share on
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u=https://www.reuneker.nl/files/runcalc"
+              target="_blank"
+              >Facebook</a
+            >,
+            <a
+              href="https://twitter.com/home?status=https://www.reuneker.nl/files/runcalc"
+              target="_blank"
+              >Twitter</a
+            >,
+            <a
+              href="https://pinterest.com/pin/create/button/?url=https://www.reuneker.nl/files/runcalc&amp;media=&amp;description="
+              target="_blank"
+              >Pinterest</a
+            >,
+            <a
+              href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.reuneker.nl/files/runcalc&amp;title=&amp;summary=&amp;source="
+              target="_blank"
+              >LinkedIn</a
+            >
+            or per
+            <a
+              href="mailto:info@example.com?&amp;subject=Running%20calculators&amp;body=https://www.reuneker.nl/files/runcalc"
+              >email</a
+            >.
+          </p>
+        </section>
+        <section id="milekm" class="visible">
+          <h2 class="bar">Mile-kilometre pace</h2>
+          <p>
+            Do you ever read about mile pace wanting to know the corresponding
+            kilometre pace, or the other way around? You can use this section to
+            convert pace.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="milekm_min">Minutes</label
+                ><select name="milekm_min" id="milekm_min">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected="">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="milekm_sec">Seconds</label
+                ><select name="milekm_sec" id="milekm_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="milekm_dir">Direction</label
+                ><select name="milekm_dir" id="milekm_dir">
+                  <option value="kmmile">Kilometre to mile</option>
+                  <option value="milekm">Mile to kilometre</option>
+                </select>
+              </div>
+              <div class="column"></div>
+            </div>
+            <button id="button_milekmpace">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="milekm_result">05:00</p>
+            <p id="milekm_label">minutes per kilometre</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://bringbackthemile.com/history/intro"
+                  target="_blank"
+                  >https://bringbackthemile.com/history/intro</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.britannica.com/science/kilometre"
+                  target="_blank"
+                  >https://www.britannica.com/science/kilometre</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#home"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="percentage">
+          <h2 class="bar">Pace percentage</h2>
+          <p>
+            Do you ever want to run at a percentage of your goal or race pace,
+            such as running at 80% of 5 minutes per kilometre or mile? You can
+            use this section to calculate the percentage of a pace.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="paceper_min">Minutes</label
+                ><select name="paceper_min" id="paceper_min">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected="">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="paceper_sec">Seconds</label
+                ><select name="paceper_sec" id="paceper_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="paceper_per">Percentage</label
+                ><select name="paceper_per" id="paceper_per">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                  <option value="60">60</option>
+                  <option value="65">65</option>
+                  <option value="70">70</option>
+                  <option value="75">75</option>
+                  <option value="80">80</option>
+                  <option value="85">85</option>
+                  <option value="90">90</option>
+                  <option value="95">95</option>
+                  <option value="100" selected="">100</option>
+                  <option value="105">105</option>
+                  <option value="110">110</option>
+                  <option value="115">115</option>
+                  <option value="120">120</option>
+                  <option value="125">125</option>
+                  <option value="130">130</option>
+                  <option value="135">135</option>
+                  <option value="140">140</option>
+                  <option value="145">145</option>
+                  <option value="150">150</option>
+                  <option value="155">155</option>
+                  <option value="160">160</option>
+                  <option value="165">165</option>
+                  <option value="170">170</option>
+                  <option value="175">175</option>
+                  <option value="180">180</option>
+                  <option value="185">185</option>
+                  <option value="190">190</option>
+                  <option value="195">195</option>
+                  <option value="200">200</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="paceper_met"
+                  >Method (if in doubt, just ignore this)</label
+                ><select name="paceper_met" id="paceper_met">
+                  <option value="division">Division</option>
+                  <option value="multiplication">Multiplication</option>
+                </select>
+              </div>
+            </div>
+            <button id="button_paceper">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="paceper_result">05:30</p>
+            <p id="paceper_label">minutes per kilometre/mile</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="http://www.runningwritings.com/2013/02/brief-thoughts-calculating-percentages.html"
+                  target="_blank"
+                  >http://www.runningwritings.com/2013/02/brief-thoughts-calculating-percentages.html</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="tdp" class="visible">
+          <h2 class="bar">Time and distance to pace</h2>
+          <p>
+            Here, you can calculate pace based on a total time and distance,
+            either in mile or kilometer pace.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="tdp_hrs">Time (hours)</label
+                ><select name="tdp_hrs" id="tdp_hrs">
+                  <option value="0">0</option>
+                  <option value="1" selected="">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="tdp_min">Minutes</label
+                ><select name="tdp_min" id="tdp_min">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="tdp_sec">Seconds</label
+                ><select name="tdp_sec" id="tdp_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="tdp_kmm">Distance (kilometers/miles)</label
+                ><select name="tdp_kmm" id="tdp_kmm">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10" selected="">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                  <option value="66">66</option>
+                  <option value="67">67</option>
+                  <option value="68">68</option>
+                  <option value="69">69</option>
+                  <option value="70">70</option>
+                  <option value="71">71</option>
+                  <option value="72">72</option>
+                  <option value="73">73</option>
+                  <option value="74">74</option>
+                  <option value="75">75</option>
+                  <option value="76">76</option>
+                  <option value="77">77</option>
+                  <option value="78">78</option>
+                  <option value="79">79</option>
+                  <option value="80">80</option>
+                  <option value="81">81</option>
+                  <option value="82">82</option>
+                  <option value="83">83</option>
+                  <option value="84">84</option>
+                  <option value="85">85</option>
+                  <option value="86">86</option>
+                  <option value="87">87</option>
+                  <option value="88">88</option>
+                  <option value="89">89</option>
+                  <option value="90">90</option>
+                  <option value="91">91</option>
+                  <option value="92">92</option>
+                  <option value="93">93</option>
+                  <option value="94">94</option>
+                  <option value="95">95</option>
+                  <option value="96">96</option>
+                  <option value="97">97</option>
+                  <option value="98">98</option>
+                  <option value="99">99</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="tdp_m">Metres</label
+                ><select name="tdp_m" id="tdp_m">
+                  <option value="0" selected="">0</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="150">150</option>
+                  <option value="200">200</option>
+                  <option value="250">250</option>
+                  <option value="300">300</option>
+                  <option value="350">350</option>
+                  <option value="400">400</option>
+                  <option value="450">450</option>
+                  <option value="500">500</option>
+                  <option value="550">550</option>
+                  <option value="600">600</option>
+                  <option value="650">650</option>
+                  <option value="700">700</option>
+                  <option value="750">750</option>
+                  <option value="800">800</option>
+                  <option value="850">850</option>
+                  <option value="900">900</option>
+                  <option value="950">950</option>
+                  <option value="1000">1000</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="tdp_uni">Unit (kilometres/miles)</label
+                ><select name="tdp_uni" id="tdp_uni">
+                  <option value="km">Kilometres</option>
+                  <option value="mile">Miles</option>
+                </select>
+              </div>
+            </div>
+            <button id="button_tdp">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="tdp_result">05:00</p>
+            <p id="tdp_label">minutes per kilometre/mile</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="http://www.runningwritings.com/2013/02/brief-thoughts-calculating-percentages.html"
+                  target="_blank"
+                  >http://www.runningwritings.com/2013/02/brief-thoughts-calculating-percentages.html</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="speed" class="visible">
+          <h2 class="bar">Pace to speed</h2>
+          <p>
+            Here, you can convert pace (time per kilometre or mile) to speed
+            (kilometre or mile per hour).
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="speed_min">Pace (minutes)</label
+                ><select name="speed_min" id="speed_min">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected="">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="speed_sec">Seconds</label
+                ><select name="speed_sec" id="speed_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="speed_uni">Unit (kilometre/mile)</label
+                ><select name="speed_uni" id="speed_uni">
+                  <option value="km">Kilometre</option>
+                  <option value="mile">Mile</option>
+                </select>
+              </div>
+              <div class="column"></div>
+            </div>
+            <button id="button_speed">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="speed_result">12</p>
+            <p id="speed_label">kilometres per hour</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Pace_(unit)"
+                  target="_blank"
+                  >https://en.wikipedia.org/wiki/Pace_(unit)</a
+                >
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Speed" target="_blank"
+                  >https://en.wikipedia.org/wiki/Speed</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="lap" class="visible">
+          <h2 class="bar">Pace to lap time</h2>
+          <p>
+            Here, you can convert pace (time per kilometre or mile) to lap time
+            (400m).
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="lap_min">Pace (minutes)</label
+                ><select name="lap_min" id="lap_min">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected="">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="lap_sec">Seconds</label
+                ><select name="lap_sec" id="lap_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="lap_uni">Unit (kilometre/mile)</label
+                ><select name="lap_uni" id="lap_uni">
+                  <option value="km">Kilometre</option>
+                  <option value="mile">Mile</option>
+                </select>
+              </div>
+              <div class="column"></div>
+            </div>
+            <button id="button_lap">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="lap_result">120</p>
+            <p id="lap_label">seconds per lap (400m)</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://www.runnersworld.com/beginner/a20848136/track-running-dos-and-donts/"
+                  target="_blank"
+                  >https://www.runnersworld.com/beginner/a20848136/track-running-dos-and-donts/</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="yasso" class="visible">
+          <h2 class="bar">Yasso</h2>
+          <p>
+            A 'yasso' is a 800m interval which you run in the time of your
+            marathon, in terms of minutes and seconds. For instance, a runner
+            aiming at a marathon in 3 hours and 30 minutes should run a yasso in
+            3 minutes and 30 seconds. While you can clock these times easily on
+            a track, I find it handy to use kilometer or mile pace, which spans
+            1000 or 1609 meters. You can calculate this yasso pace here.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="yasso_hrs">Marathon time (hours)</label
+                ><select name="yasso_hrs" id="yasso_hrs">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected="">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="yasso_min">Minutes</label
+                ><select name="yasoo_min" id="yasso_min">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30" selected="">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <button id="button_yasso">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <div class="row">
+              <div class="column">
+                <p class="result" id="yasso_result_half">01:45</p>
+                <p id="yasso_label_half">Half a yasso (400m)</p>
+              </div>
+              <div class="column">
+                <p class="result" id="yasso_result_full">03:30</p>
+                <p id="yasso_label_full">Yasso (800m)</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <p class="result" id="yasso_result_kmpace">04:22</p>
+                <p id="yasso_label_kmpace">Yasso pace (kilometre)</p>
+              </div>
+              <div class="column">
+                <p class="result" id="yasso_result_mlpace">07:02</p>
+                <p id="yasso_label_mlpace">Yasso pace (mile)</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://www.runnersworld.com/training/a20799355/yasso-800s/"
+                  target="_blank"
+                  >https://www.runnersworld.com/training/a20799355/yasso-800s/</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="vo2max" class="visible">
+          <h2 class="bar">VO2max</h2>
+          <p>
+            VO2max is the maximum rate of oxygen consumption measured during
+            incremental exercise. It is a general measurement of fitness. You
+            can estimate it here. See the reference tables at
+            <a href="http://www.machars.net/v02max.htm" target="_blank"
+              >machars.net</a
+            >
+            to interpret your own VO2max value. A lab test is the most reliable
+            way of measuring your VO2max, but it is expensive. This calculator
+            uses
+            <a
+              href="https://www.runnersworld.com/advanced/a20825580/threshold-training-finding-your-vdot/"
+              target="_blank"
+              >Jack Daniels's formula</a
+            >.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="vo2max_hrs">Time (hours)</label
+                ><select name="vo2max_hrs" id="vo2max_hrs">
+                  <option value="0">0</option>
+                  <option value="1" selected="">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="vo2max_min">Minutes</label
+                ><select name="vo2max_min" id="vo2max_min">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="vo2max_sec">Seconds</label
+                ><select name="vo2max_sec" id="vo2max_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="vo2max_kmm">Distance (kilometers/miles)</label
+                ><select name="vo2max_kmm" id="vo2max_kmm">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10" selected="">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                  <option value="66">66</option>
+                  <option value="67">67</option>
+                  <option value="68">68</option>
+                  <option value="69">69</option>
+                  <option value="70">70</option>
+                  <option value="71">71</option>
+                  <option value="72">72</option>
+                  <option value="73">73</option>
+                  <option value="74">74</option>
+                  <option value="75">75</option>
+                  <option value="76">76</option>
+                  <option value="77">77</option>
+                  <option value="78">78</option>
+                  <option value="79">79</option>
+                  <option value="80">80</option>
+                  <option value="81">81</option>
+                  <option value="82">82</option>
+                  <option value="83">83</option>
+                  <option value="84">84</option>
+                  <option value="85">85</option>
+                  <option value="86">86</option>
+                  <option value="87">87</option>
+                  <option value="88">88</option>
+                  <option value="89">89</option>
+                  <option value="90">90</option>
+                  <option value="91">91</option>
+                  <option value="92">92</option>
+                  <option value="93">93</option>
+                  <option value="94">94</option>
+                  <option value="95">95</option>
+                  <option value="96">96</option>
+                  <option value="97">97</option>
+                  <option value="98">98</option>
+                  <option value="99">99</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="vo2max_m">Metres</label
+                ><select name="vo2max_m" id="vo2max_m">
+                  <option value="0" selected="">0</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="150">150</option>
+                  <option value="200">200</option>
+                  <option value="250">250</option>
+                  <option value="300">300</option>
+                  <option value="350">350</option>
+                  <option value="400">400</option>
+                  <option value="450">450</option>
+                  <option value="500">500</option>
+                  <option value="550">550</option>
+                  <option value="600">600</option>
+                  <option value="650">650</option>
+                  <option value="700">700</option>
+                  <option value="750">750</option>
+                  <option value="800">800</option>
+                  <option value="850">850</option>
+                  <option value="900">900</option>
+                  <option value="950">950</option>
+                  <option value="1000">1000</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="vo2max_uni">Unit (kilometres/miles)</label
+                ><select name="vo2max_uni" id="vo2max_uni">
+                  <option value="km">Kilometres</option>
+                  <option value="mile">Miles</option>
+                </select>
+              </div>
+            </div>
+            <button id="button_vo2max">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="vo2max_result">32.28</p>
+            <p id="vo2max_label">VO2max</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a href="http://www.machars.net/v02max.htm" target="_blank"
+                  >http://www.machars.net/v02max.htm</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.runnersworld.com/advanced/a20825580/threshold-training-finding-your-vdot/"
+                  target="_blank"
+                  >https://www.runnersworld.com/advanced/a20825580/threshold-training-finding-your-vdot</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="training" class="visible">
+          <h2 class="bar">Training paces</h2>
+          <p>
+            This training paces calculator is based on percentages, using the
+            multiplication method (see Pace percentage). Please use the numbers
+            as indications, not as scientifically informed predictions. (So do
+            what feels good, not what a calculator tells you!).
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="training_hrs">Time (hours)</label
+                ><select name="training_hrs" id="training_hrs">
+                  <option value="0">0</option>
+                  <option value="1" selected="">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="training_min">Minutes</label
+                ><select name="training_min" id="training_min">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="training_sec">Seconds</label
+                ><select name="training_sec" id="training_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="training_kmm">Distance (kilometers/miles)</label
+                ><select name="training_kmm" id="training_kmm">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10" selected="">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                  <option value="66">66</option>
+                  <option value="67">67</option>
+                  <option value="68">68</option>
+                  <option value="69">69</option>
+                  <option value="70">70</option>
+                  <option value="71">71</option>
+                  <option value="72">72</option>
+                  <option value="73">73</option>
+                  <option value="74">74</option>
+                  <option value="75">75</option>
+                  <option value="76">76</option>
+                  <option value="77">77</option>
+                  <option value="78">78</option>
+                  <option value="79">79</option>
+                  <option value="80">80</option>
+                  <option value="81">81</option>
+                  <option value="82">82</option>
+                  <option value="83">83</option>
+                  <option value="84">84</option>
+                  <option value="85">85</option>
+                  <option value="86">86</option>
+                  <option value="87">87</option>
+                  <option value="88">88</option>
+                  <option value="89">89</option>
+                  <option value="90">90</option>
+                  <option value="91">91</option>
+                  <option value="92">92</option>
+                  <option value="93">93</option>
+                  <option value="94">94</option>
+                  <option value="95">95</option>
+                  <option value="96">96</option>
+                  <option value="97">97</option>
+                  <option value="98">98</option>
+                  <option value="99">99</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="training_m">Metres</label
+                ><select name="training_m" id="training_m">
+                  <option value="0" selected="">0</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="150">150</option>
+                  <option value="200">200</option>
+                  <option value="250">250</option>
+                  <option value="300">300</option>
+                  <option value="350">350</option>
+                  <option value="400">400</option>
+                  <option value="450">450</option>
+                  <option value="500">500</option>
+                  <option value="550">550</option>
+                  <option value="600">600</option>
+                  <option value="650">650</option>
+                  <option value="700">700</option>
+                  <option value="750">750</option>
+                  <option value="800">800</option>
+                  <option value="850">850</option>
+                  <option value="900">900</option>
+                  <option value="950">950</option>
+                  <option value="1000">1000</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="training_uni">Unit (kilometres/miles)</label
+                ><select name="training_uni" id="training_uni">
+                  <option value="km">Kilometres</option>
+                  <option value="mile">Miles</option>
+                </select>
+              </div>
+            </div>
+            <button id="button_training">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Training type</th>
+                  <th class="right">Pace</th>
+                  <th class="right">Percentage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Long run pace</th>
+                  <td id="training_long">06:40-07:42</td>
+                  <td>65%-75%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Easy run pace</th>
+                  <td id="training_easy">06:40-06:15</td>
+                  <td>75%-85%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tempo run pace</th>
+                  <td id="training_tempo">05:16-05:00</td>
+                  <td>95%-100%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Yasso pace</th>
+                  <td id="training_yasso">04:38</td>
+                  <td>108%</td>
+                </tr>
+                <tr>
+                  <th scope="row">VO2max pace</th>
+                  <td id="training_vo2max">04:33</td>
+                  <td>110%</td>
+                </tr>
+                <tr>
+                  <th scope="row">Speed form pace</th>
+                  <td id="training_speed">04:21</td>
+                  <td>115%</td>
+                </tr>
+              </tbody>
+            </table>
+            <!--<p class="result" id="training_result">32.28</p>-->
+            <p id="training_label">pace in minutes per kilometre</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://www.runnersworld.com/beginner/a20866637/how-do-i-find-the-right-training-pace/?utm_content=2017-06-27"
+                  target="_blank"
+                  >https://www.runnersworld.com/beginner/a20866637/how-do-i-find-the-right-training-pace/?utm_content=2017-06-27</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="predictors" class="visible">
+          <h2 class="bar">Riegel predictor</h2>
+          <p>
+            This prediction calculator is based on
+            <a
+              href="https://en.wikipedia.org/wiki/Peter_Riegel#Race_time_prediction"
+              target="_blank"
+              >Peter Riegel's (1977)</a
+            >
+            article for
+            <a
+              href="https://runscore.com/coursemeasurement/Articles/TechTips.pdf"
+              target="_blank"
+              >Runner's World</a
+            >. He proposed a formula for comparing relative performances at
+            different distances. The formula is
+            <em
+              >predicted time = given time * (new distance/original
+              distance)<sup>1.06</sup></em
+            >.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="predictor_hrs">Time (hours)</label
+                ><select name="predictor_hrs" id="predictor_hrs">
+                  <option value="0">0</option>
+                  <option value="1" selected="">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="predictor_min">Minutes</label
+                ><select name="predictor_min" id="predictor_min">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="predictor_sec">Seconds</label
+                ><select name="predictor_sec" id="predictor_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="predictor_org">Original distance</label
+                ><select name="predictor_org" id="predictor_org">
+                  <option value="5000">5 kilometres</option>
+                  <option value="8045">5 miles</option>
+                  <option value="10000" selected="">10 kilometres</option>
+                  <option value="16090">10 miles</option>
+                  <option value="21098">Half marathon</option>
+                  <option value="42195">Marathon</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="predictor_new">Distance to predict</label
+                ><select name="predictor_new" id="predictor_new">
+                  <option value="5000">5 kilometres</option>
+                  <option value="8045">5 miles</option>
+                  <option value="10000">10 kilometres</option>
+                  <option value="16090">10 miles</option>
+                  <option value="21098" selected="">Half marathon</option>
+                  <option value="42195">Marathon</option>
+                </select>
+              </div>
+              <div class="column"></div>
+            </div>
+            <button id="button_predictor">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="predictor_result">2:12:23</p>
+            <p id="predictor_label">on a half marathon</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Peter_Riegel#Race_time_prediction"
+                  target="_blank"
+                  >https://en.wikipedia.org/wiki/Peter_Riegel#Race_time_prediction</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://runscore.com/coursemeasurement/Articles/TechTips.pdf"
+                  target="_blank"
+                  >https://runscore.com/coursemeasurement/Articles/TechTips.pdf</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.theguardian.com/lifeandstyle/the-running-blog/2018/feb/15/an-updated-formula-for-marathon-running-success"
+                  target="_blank"
+                  >https://www.theguardian.com/lifeandstyle/the-running-blog/2018/feb/15/an-updated-formula-for-marathon-running-success</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.researchgate.net/publication/336163271_Prediction_Equations_for_Marathon_Performance_A_Systematic_Review"
+                  target="_blank"
+                  >https://www.researchgate.net/publication/336163271_Prediction_Equations_for_Marathon_Performance_A_Systematic_Review</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+        <section id="cameron" class="visible">
+          <h2 class="bar">Cameron predictor</h2>
+          <p>
+            This prediction calculator is based on
+            <a
+              href="https://www.cs.uml.edu/~phoffman/cammod.html"
+              target="_blank"
+              >David Cameron's (1998)</a
+            >
+            formula published for
+            <a
+              href="https://www.cs.uml.edu/~phoffman/cammod.html"
+              target="_blank"
+              >Statistical Services of A. C. Nielsen Co.</a
+            >. He used a number of times of world-level athletes from 400M to 50
+            Miles in a non-linear regression model to predict race times. I'll
+            present the formula below.
+          </p>
+          <p class="align-left">
+            <em
+              >predicted time =
+              (time<sub>in</sub>/distance<sub>in</sub>)*distance<sub>out</sub>*((13.49681-0.000030363*distance<sub>in</sub>+
+              835.7114/distance<sub>in</sub>*0.7905)/(13.49681-0.000030363*distance<sub>out</sub>+835.7114/distance<sub>out</sub>*0.7905)</em
+            >.
+          </p>
+          <p>
+            Luckily, you can just select your own time at a certain distance and
+            predict your time for another distance without any statistical
+            knowledge.
+          </p>
+          <p class="strong">Calculation</p>
+          <div class="input center">
+            <p class="strong">Input</p>
+            <div class="row">
+              <div class="column">
+                <label for="cameron_hrs">Time (hours)</label
+                ><select name="cameron_hrs" id="cameron_hrs">
+                  <option value="0">0</option>
+                  <option value="1" selected="">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="cameron_min">Minutes</label
+                ><select name="cameron_min" id="cameron_min">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="cameron_sec">Seconds</label
+                ><select name="cameron_sec" id="cameron_sec">
+                  <option value="0" selected="">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                </select>
+              </div>
+              <div class="column">
+                <label for="cameron_org">Original distance</label
+                ><select name="cameron_org" id="cameron_org">
+                  <option value="5000">5 kilometres</option>
+                  <option value="8045">5 miles</option>
+                  <option value="10000" selected="">10 kilometres</option>
+                  <option value="16090">10 miles</option>
+                  <option value="21098">Half marathon</option>
+                  <option value="42195">Marathon</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="cameron_new">Distance to predict</label
+                ><select name="cameron_new" id="cameron_new">
+                  <option value="5000">5 kilometres</option>
+                  <option value="8045">5 miles</option>
+                  <option value="10000">10 kilometres</option>
+                  <option value="16090">10 miles</option>
+                  <option value="21098" selected="">Half marathon</option>
+                  <option value="42195">Marathon</option>
+                </select>
+              </div>
+              <div class="column"></div>
+            </div>
+            <button id="button_cameron">Calculate</button>
+          </div>
+          <div class="input center">
+            <p class="strong">Output</p>
+            <p class="result" id="cameron_result">2:12:23</p>
+            <p id="cameron_label">on a half marathon</p>
+          </div>
+          <div>
+            <p class="strong">References</p>
+            <ul class="indent dont-break-out">
+              <li>
+                <a
+                  href="https://www.cs.uml.edu/~phoffman/cammod.html"
+                  target="_blank"
+                  >https://www.cs.uml.edu/~phoffman/cammod.html</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.goandrace.com/en/race-time-predictor.php"
+                  target="_blank"
+                  >https://www.goandrace.com/en/race-time-predictor.php</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.chatnrun.nl/calculator/faq/rp.php"
+                  target="_blank"
+                  >https://www.chatnrun.nl/calculator/faq/rp.php</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.swimbikerun.net.nz/Calculators/RunningExpectationsCalculator"
+                  target="_blank"
+                  >https://www.swimbikerun.net.nz/Calculators/RunningExpectationsCalculator</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="totop">
+            <p>
+              <a href="https://www.reuneker.nl/files/runcalc/#"
+                ><span class="material-icons">arrow_circle_up</span></a
+              >
+            </p>
+          </div>
+        </section>
+      </main>
+      <aside id="contact">
+        <h2 class="bar">About</h2>
+        <p>
+          This page is made by
+          <a href="https://www.reuneker.nl/" target="_blank">Alex Reuneker</a>. I work as a linguist and I like long-distance running.
+                        </p>
+                        <figure class="center">
+                            <img src="./Running calculators_files/alex.jpg" alt="Alex" class="round small" />
+                        </figure>
+                        <p>
+                            There are no ads here. Hello's and suggestions are very welcome, though.
+                        </p>
+                        <p></p>
+                        <form action="https://www.reuneker.nl/files/runcalc/mail.php" method="post">
+                            <label for="contact_name">Name<sup>*</sup></label
+          ><input
+            type="text"
+            id="contact_name"
+            name="contact_name"
+            placeholder="Colin Smith"
+            required=""
+          /><label for="contact_mail">Email<sup>*</sup></label
+          ><input
+            type="email"
+            id="contact_mail"
+            name="contact_mail"
+            placeholder="colin.smith@loneliness.com"
+            required=""
+          /><label for="contact_captcha">Fight spam<sup>*</sup></label
+          ><input
+            type="text"
+            id="contact_captcha"
+            name="contact_captcha"
+            placeholder="A cat has how many paws?"
+            required=""
+          /><label for="contact_message">Message<sup>*</sup></label
+          ><textarea
+            name="contact_message"
+            id="contact_message"
+            placeholder="Hi there, thanks for this!"
+            required=""
+            data-gramm="false"
+            wt-ignore-input="true"
+          ></textarea
+          ><input
+            type="submit"
+            name="submit"
+            class="button"
+            id="contact_button"
+            value="Send"
+          />
+        </form>
+        <p>Last update: October 23, 2020.<br />24208 page views.</p>
+      </aside>
+      <footer>
+        <p>
+          © <a href="https://www.reuneker.nl/files/runcalc/#">Alex Reuneker</a>,
+          2020.<br />Favicon by
+          <a
+            href="https://www.visualpharm.com/free-icons/running-595b40b65ba036ed117d3bb3"
+            target="_blank"
+            >Icon8</a
+          >.
+        </p>
+      </footer>
+    </div>
+    <script>
+      function fill_min_sec(id, min, max, step, selected) {
+        var element = document.getElementById(id);
+        for (var i = min; i <= max; i += step) {
+          if (i == selected) {
+            element.innerHTML +=
+              "<option value=" + i + " selected>" + i + "</option>";
+          } else {
+            element.innerHTML += "<option value=" + i + ">" + i + "</option>";
+          }
+        }
+      }
+
+      function sec_convert(value) {
+        var hours = Math.floor(value / 3600);
+        var minutes = Math.floor((value % 3600) / 60);
+        var seconds = Math.round(value % 60);
+        if (hours > 0) {
+          hours = hours + ":";
+        } else {
+          hours = "";
+        }
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        return hours + minutes + ":" + seconds;
+      }
+
+      function milekm_calculate(min, sec, dir) {
+        if (dir == "milekm") {
+          var product = ((min * 60 + sec) / 1609) * 1000;
+        } else {
+          var product = ((min * 60 + sec) / 1000) * 1609;
+        }
+        return sec_convert(product);
+      }
+
+      function divide_calculate(minutes, seconds, percentage) {
+        var product = (minutes * 60 + seconds) / (percentage / 100);
+        return sec_convert(product);
+      }
+
+      function multiply_calculate(minutes, seconds, percentage) {
+        var product = (minutes * 60 + seconds) * (1 + 1 - percentage / 100);
+        return sec_convert(product);
+      }
+
+      function time_dist_pace(
+        hours,
+        minutes,
+        seconds,
+        distkmm,
+        distm,
+        distunit
+      ) {
+        var tdp_combine = hours * 60 * 60 + minutes * 60 + seconds;
+
+        if (distunit == "mile") {
+          var result = sec_convert(
+            (tdp_combine / (distkmm * 1609 + distm / (1609 / 1000))) * 1000
+          );
+          var result_lap =
+            (tdp_combine / (distkmm * 1609 + distm / (1609 / 1000))) * 400;
+        } else {
+          var result = sec_convert(
+            (tdp_combine / (distkmm * 1000 + distm)) * 1000
+          );
+          var result_lap = (tdp_combine / (distkmm * 1000 + distm)) * 400;
+        }
+        //document.getElementById('tdp_unit_pace_text').innerHTML = result;
+        //document.getElementById('tdp_unit_lap_text').innerHTML = Math.round((result_lap + Number.EPSILON) * 100) / 100;
+        return result;
+      }
+
+      function yasso(race_hours, race_minutes) {
+        var race_combine = race_hours * 60 + race_minutes;
+        var race_1000_minutes = Math.floor(((race_combine / 800) * 1000) / 60);
+        var race_1000_seconds = Math.floor(((race_combine / 800) * 1000) % 60);
+        var race_1609_minutes = Math.floor(((race_combine / 800) * 1609) / 60);
+        var race_1609_seconds = Math.floor(((race_combine / 800) * 1609) % 60);
+        var race_half_combine = Math.floor(race_combine / 2);
+        var race_half_minutes = Math.floor(race_half_combine / 60);
+        var race_half_seconds = Math.floor(race_half_combine % 60);
+
+        if (race_hours < 10) {
+          race_hours = "0" + race_hours;
+        }
+        if (race_minutes < 10) {
+          race_minutes = "0" + race_minutes;
+        }
+        if (race_1000_minutes < 10) {
+          race_1000_minutes = "0" + race_1000_minutes;
+        }
+        if (race_1000_seconds < 10) {
+          race_1000_seconds = "0" + race_1000_seconds;
+        }
+        if (race_1609_minutes < 10) {
+          race_1609_minutes = "0" + race_1609_minutes;
+        }
+        if (race_1609_seconds < 10) {
+          race_1609_seconds = "0" + race_1609_seconds;
+        }
+        if (race_half_minutes < 10) {
+          race_half_minutes = "0" + race_half_minutes;
+        }
+        if (race_half_seconds < 10) {
+          race_half_seconds = "0" + race_half_seconds;
+        }
+        return [
+          race_half_minutes + ":" + race_half_seconds,
+          race_hours + ":" + race_minutes,
+          race_1000_minutes + ":" + race_1000_seconds,
+          race_1609_minutes + ":" + race_1609_seconds,
+        ];
+        //document.getElementById('yasso_train_time_400').innerHTML = race_half_minutes+':'+race_half_seconds;
+        //document.getElementById('yasso_train_time_800').innerHTML = race_hours+':'+race_minutes;
+        //document.getElementById('yasso_train_time_1000').innerHTML = race_1000_minutes+':'+race_1000_seconds;
+        //document.getElementById('yasso_train_time_1609').innerHTML = race_1609_minutes+':'+race_1609_seconds;
+      }
+
+      function vo2max(hours, minutes, seconds, distkmm, distm, distunit) {
+        if (distunit == "mile") {
+          var vo2max_dist = distkmm * 1609 + distm;
+        } else {
+          var vo2max_dist = distkmm * 1000 + distm;
+        }
+        console.log(vo2max_dist);
+        var vo2max_time = parseFloat(
+          (hours * 60 * 60 + minutes * 60 + seconds) / 60
+        );
+        var v = vo2max_dist / vo2max_time;
+        var vo2 =
+          parseFloat(-4.6) +
+          parseFloat(0.182258 * v) +
+          parseFloat(0.000104 * v * v);
+        var permax =
+          parseFloat(0.1894393 * Math.exp(-0.012778 * vo2max_time)) +
+          parseFloat(0.8) +
+          parseFloat(0.2989558 * Math.exp(-0.1932605 * vo2max_time));
+        var vo2max = vo2 / permax;
+        var factor = Math.pow(10, 1);
+        var vo2max = (vo2max * factor) / factor;
+        //document.getElementById('vo2max_result').innerHTML = vo2max.toString();
+        return vo2max;
+      }
+
+      function speed(minutes, seconds, unit) {
+        var sec_total = minutes * 60 + seconds;
+        if (unit == "mile") {
+          sec_total = (sec_total / 1609) * 1000;
+        }
+        return (1 / (sec_total / 60)) * 60;
+      }
+
+      function lap(minutes, seconds, unit) {
+        var sec_total = minutes * 60 + seconds;
+        if (unit == "mile") {
+          sec_total = (sec_total / 1609) * 1000;
+        }
+        return (sec_total / 1000) * 400;
+      }
+
+      function predict_riegel(hours, minutes, seconds, dist_org, dist_new) {
+        var predict_hours_org = parseInt(
+          document.getElementById("predictor_hrs").value
+        );
+        var predict_minutes_org = parseInt(
+          document.getElementById("predictor_min").value
+        );
+        var predict_seconds_org = parseInt(
+          document.getElementById("predictor_sec").value
+        );
+        var predict_dist_org = parseInt(
+          document.getElementById("predictor_org").value
+        );
+        var predict_dist_new = parseInt(
+          document.getElementById("predictor_new").value
+        );
+
+        var time_org = hours * 3600 + minutes * 60 + seconds;
+        var riegel = time_org * Math.pow(dist_new / dist_org, 1.06);
+
+        return sec_convert(riegel);
+
+        //document.getElementById('predict_time_new').innerHTML = convert(riegel);
+        //console.log(convert(riegel));
+        //T2 = T1 x (D2/D1) 1.06 where T1 is the given time, D1 is the given distance, D2 is the distance to predict a time for, and T2 is the calculated time for D2.
+        //return time_org*(/)
+        //T2=T1×(D2÷D1)1.06
+        //https://bmcsportsscimedrehabil.biomedcentral.com/articles/10.1186/s13102-016-0052-y
+      }
+
+      function training(
+        trainpace_hours,
+        trainpace_minutes,
+        trainpace_seconds,
+        trainpace_kmm,
+        trainpace_m,
+        trainpace_unit
+      ) {
+        if (trainpace_unit == "mile") {
+          trainpace_dist = trainpace_kmm * 1609 + trainpace_m;
+        } else {
+          trainpace_dist = trainpace_kmm * 1000 + trainpace_m;
+        }
+        var trainpace_pace_org_tot =
+          ((trainpace_hours * 60 * 60 +
+            trainpace_minutes * 60 +
+            trainpace_seconds) /
+            trainpace_dist) *
+          1000;
+        var trainpace_pace_org_min = Math.floor(trainpace_pace_org_tot / 60);
+        var trainpace_pace_org_sec = Math.round(trainpace_pace_org_tot % 60);
+        return [
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            75
+          ).toString() +
+            "-" +
+            divide_calculate(
+              trainpace_pace_org_min,
+              trainpace_pace_org_sec,
+              65
+            ).toString(),
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            85
+          ).toString() +
+            "-" +
+            divide_calculate(
+              trainpace_pace_org_min,
+              trainpace_pace_org_sec,
+              75
+            ).toString(),
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            100
+          ).toString() +
+            "-" +
+            divide_calculate(
+              trainpace_pace_org_min,
+              trainpace_pace_org_sec,
+              95
+            ).toString(),
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            108
+          ).toString(),
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            110
+          ).toString(),
+          divide_calculate(
+            trainpace_pace_org_min,
+            trainpace_pace_org_sec,
+            115
+          ).toString(),
+        ];
+      }
+
+      function cameron(
+        cameron_hrs,
+        cameron_min,
+        cameron_sec,
+        cameron_org,
+        cameron_new
+      ) {
+        var dist_org = cameron_org / 1.6091 / 1000;
+        console.log(dist_org);
+        var dist_new = cameron_new / 1.6091 / 1000;
+        console.log(dist_new);
+        var sec_total = cameron_hrs * 60 * 60 + cameron_min * 60 + cameron_sec;
+        console.log(sec_total);
+        console.log(sec_convert(sec_total));
+        //var a=13.49681-0.048865*cameron_org+2.438936/(Math.pow(cameron_org,0.7905));
+        //var b=13.49681-0.048865*cameron_new+2.438936/(Math.pow(cameron_new,0.7905));
+        var a =
+          13.49681 -
+          0.000030363 * cameron_org +
+          835.7114 / Math.pow(cameron_org, 0.7905);
+        var b =
+          13.49681 -
+          0.000030363 * cameron_new +
+          835.7114 / Math.pow(cameron_new, 0.7905);
+
+        return sec_convert(((sec_total / dist_org) * dist_new * a) / b);
+        //return sec_convert((sec_total/dist_org)*cameron_new*(13.49681-0.000030363*dist_org+835.7114/Math.pow(dist_org,0.7905)) / (13.49681-0.000030363*cameron_new+835.7114/Math.pow(cameron_new,0.7905));
+        //newtime = (oldtime/olddist) * (a/b) * newdist
+        //https://www.goandrace.com/en/race-time-predictor.php
+        //http://www.chatnrun.nl/calculator/calc/rpother.php
+      }
+
+      /*
+a = 13.49681 - 0.048865*olddist + 2.438936/(olddist**0.7905)
+b = 13.49681 - 0.048865*newdist + 2.438936/(newdist**0.7905)
+newtime = (oldtime/olddist) * (a/b) * newdist
+
+Note that the distances are in miles; the times in seconds.
+*/
+
+      function show_hide(element) {
+        var mains = document.getElementsByClassName("page");
+        for (var i = 0; i < mains.length; i++) {
+          mains[i].style.display = "none";
+        }
+        var element = document.getElementById(element);
+        element.style.display = "block";
+      }
+
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+      function eraseCookie(name) {
+        document.cookie =
+          name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      }
+
+      window.onload = function () {
+        /* FILL SELECTS WITH OPTIONS FOR HOURS, MINUTES, SECONDS, MILES, KILOMETERS AND METERS */
+        fill_min_sec("milekm_min", 0, 15, 1, 5);
+        fill_min_sec("milekm_sec", 0, 59, 1, 0);
+
+        fill_min_sec("paceper_min", 0, 15, 1, 5);
+        fill_min_sec("paceper_sec", 0, 59, 1, 0);
+        fill_min_sec("paceper_per", 5, 200, 5, 100);
+
+        fill_min_sec("tdp_hrs", 0, 59, 1, 1);
+        fill_min_sec("tdp_min", 0, 59, 1, 0);
+        fill_min_sec("tdp_sec", 0, 59, 1, 0);
+        fill_min_sec("tdp_kmm", 0, 100, 1, 10);
+        fill_min_sec("tdp_m", 0, 1000, 50, 0);
+
+        fill_min_sec("yasso_hrs", 1, 6, 1, 3);
+        fill_min_sec("yasso_min", 0, 59, 1, 30);
+
+        fill_min_sec("speed_min", 0, 15, 1, 5);
+        fill_min_sec("speed_sec", 0, 59, 1, 0);
+
+        fill_min_sec("lap_min", 0, 15, 1, 5);
+        fill_min_sec("lap_sec", 0, 59, 1, 0);
+
+        fill_min_sec("vo2max_hrs", 0, 59, 1, 1);
+        fill_min_sec("vo2max_min", 0, 59, 1, 0);
+        fill_min_sec("vo2max_sec", 0, 59, 1, 0);
+        fill_min_sec("vo2max_kmm", 0, 100, 1, 10);
+        fill_min_sec("vo2max_m", 0, 1000, 50, 0);
+
+        fill_min_sec("training_hrs", 0, 15, 1, 1);
+        fill_min_sec("training_min", 0, 59, 1, 0);
+        fill_min_sec("training_sec", 0, 59, 1, 0);
+        fill_min_sec("training_kmm", 0, 100, 1, 10);
+        fill_min_sec("training_m", 0, 1000, 50, 0);
+
+        fill_min_sec("predictor_hrs", 0, 15, 1, 1);
+        fill_min_sec("predictor_min", 0, 59, 1, 0);
+        fill_min_sec("predictor_sec", 0, 59, 1, 0);
+
+        fill_min_sec("cameron_hrs", 0, 15, 1, 1);
+        fill_min_sec("cameron_min", 0, 59, 1, 0);
+        fill_min_sec("cameron_sec", 0, 59, 1, 0);
+
+        /* GET GLOBAL UNIT */
+        /*
+	var cookie = getCookie('glob_unit');
+	if (cookie) {
+		var glob_unit = cookie;
+		if (glob_unit=='ml') {
+			document.getElementById('glob_km').checked = false;
+			document.getElementById('glob_ml').checked = true;
+		}
+	}
+	else {
+		setCookie('glob_unit','km',100);
+		var glob_unit = 'km';
+	}
+	document.getElementById('glob_km').onclick = function() {
+		glob_unit = 'km';
+		setCookie('glob_unit','km',100);
+		console.log(glob_unit);
+	};
+	document.getElementById('glob_ml').onclick = function() {
+		glob_unit = 'ml';
+		setCookie('glob_unit','ml',100);
+		console.log(glob_unit);
+	};
+	console.log(glob_unit);
+	*/
+
+        /* TOGGLE MENU */
+        document.getElementById("toggler").onclick = function () {
+          var object = document.getElementById("toggle");
+          if (object.className == "firststate") {
+            object.className = "secondstate";
+          } else {
+            object.className = "firststate";
+          }
+        };
+
+        /* MILE-KM PACE CONVERTER */
+        document.getElementById("button_milekmpace").onclick = function () {
+          var input_min = parseInt(document.getElementById("milekm_min").value);
+          var input_sec = parseInt(document.getElementById("milekm_sec").value);
+          var input_dir = document.getElementById("milekm_dir").value;
+          var result = milekm_calculate(input_min, input_sec, input_dir);
+          document.getElementById("milekm_result").innerHTML = result;
+          if (input_dir == "milekm") {
+            document.getElementById("milekm_label").innerHTML =
+              "minutes per kilometre";
+          } else {
+            document.getElementById("milekm_label").innerHTML =
+              "minutes per mile";
+          }
+        };
+        /* PACE-PERCENTAGE CONVERTER */
+        document.getElementById("button_paceper").onclick = function () {
+          var input_min = parseInt(
+            document.getElementById("paceper_min").value
+          );
+          var input_sec = parseInt(
+            document.getElementById("paceper_sec").value
+          );
+          var input_per = parseInt(
+            document.getElementById("paceper_per").value
+          );
+          var input_met = document.getElementById("paceper_met").value;
+          if (input_met == "division") {
+            var result = divide_calculate(input_min, input_sec, input_per);
+          } else {
+            var result = multiply_calculate(input_min, input_sec, input_per);
+          }
+          document.getElementById("paceper_result").innerHTML = result;
+        };
+
+        /* TIME AND DISTANCE TO PACE */
+        document.getElementById("button_tdp").onclick = function () {
+          var input_hrs = parseInt(document.getElementById("tdp_hrs").value);
+          var input_min = parseInt(document.getElementById("tdp_min").value);
+          var input_sec = parseInt(document.getElementById("tdp_sec").value);
+
+          var input_distkmm = parseInt(
+            document.getElementById("tdp_kmm").value
+          );
+          var input_dist_m = parseInt(document.getElementById("tdp_m").value);
+          var input_unit = document.getElementById("tdp_uni").value;
+          document.getElementById("tdp_result").innerHTML = time_dist_pace(
+            input_hrs,
+            input_min,
+            input_sec,
+            input_distkmm,
+            input_dist_m,
+            input_unit
+          );
+          if (input_unit == "mile") {
+            document.getElementById("tdp_label").innerHTML = "minutes per mile";
+          } else {
+            document.getElementById("tdp_label").innerHTML =
+              "minutes per kilometre";
+          }
+        };
+        /* YASSO */
+        document.getElementById("button_yasso").onclick = function () {
+          var input_hrs = parseInt(document.getElementById("yasso_hrs").value);
+          var input_min = parseInt(document.getElementById("yasso_min").value);
+          var result = yasso(input_hrs, input_min);
+
+          document.getElementById("yasso_result_half").innerHTML = result[0];
+          document.getElementById("yasso_result_full").innerHTML = result[1];
+          document.getElementById("yasso_result_kmpace").innerHTML = result[2];
+          document.getElementById("yasso_result_mlpace").innerHTML = result[3];
+        };
+        /* SPEED */
+        document.getElementById("button_speed").onclick = function () {
+          var input_min = parseInt(document.getElementById("speed_min").value);
+          var input_sec = parseInt(document.getElementById("speed_sec").value);
+          var input_unit = document.getElementById("speed_uni").value;
+          if (input_unit == "mile") {
+            document.getElementById("speed_label").innerHTML = "miles per hour";
+          } else {
+            document.getElementById("speed_label").innerHTML =
+              "kilometres per hour";
+          }
+          document.getElementById("speed_result").innerHTML =
+            Math.round(
+              speed(input_min, input_sec, input_unit) * 100 + Number.EPSILON
+            ) / 100;
+        };
+        /* SPEED */
+        document.getElementById("button_lap").onclick = function () {
+          var input_min = parseInt(document.getElementById("lap_min").value);
+          var input_sec = parseInt(document.getElementById("lap_sec").value);
+          var input_unit = document.getElementById("lap_uni").value;
+          document.getElementById("lap_result").innerHTML =
+            Math.round(
+              lap(input_min, input_sec, input_unit) * 100 + Number.EPSILON
+            ) / 100;
+        };
+
+        /* VO2MAX */
+        document.getElementById("button_vo2max").onclick = function () {
+          var input_hrs = parseInt(document.getElementById("vo2max_hrs").value);
+          var input_min = parseInt(document.getElementById("vo2max_min").value);
+          var input_sec = parseInt(document.getElementById("vo2max_sec").value);
+
+          var input_distkmm = parseInt(
+            document.getElementById("vo2max_kmm").value
+          );
+          var input_dist_m = parseInt(
+            document.getElementById("vo2max_m").value
+          );
+          var input_unit = document.getElementById("vo2max_uni").value;
+          document.getElementById("vo2max_result").innerHTML =
+            Math.round(
+              vo2max(
+                input_hrs,
+                input_min,
+                input_sec,
+                input_distkmm,
+                input_dist_m,
+                input_unit
+              ) *
+                100 +
+                Number.EPSILON
+            ) / 100;
+        };
+
+        /* TRAINING */
+        document.getElementById("button_training").onclick = function () {
+          var input_hrs = parseInt(
+            document.getElementById("training_hrs").value
+          );
+          var input_min = parseInt(
+            document.getElementById("training_min").value
+          );
+          var input_sec = parseInt(
+            document.getElementById("training_sec").value
+          );
+
+          var input_distkmm = parseInt(
+            document.getElementById("training_kmm").value
+          );
+          var input_dist_m = parseInt(
+            document.getElementById("training_m").value
+          );
+          var input_unit = document.getElementById("training_uni").value;
+
+          var result = training(
+            input_hrs,
+            input_min,
+            input_sec,
+            input_distkmm,
+            input_dist_m,
+            input_unit
+          );
+
+          document.getElementById("training_long").innerHTML = result[0];
+          document.getElementById("training_easy").innerHTML = result[1];
+          document.getElementById("training_tempo").innerHTML = result[2];
+          document.getElementById("training_yasso").innerHTML = result[3];
+          document.getElementById("training_vo2max").innerHTML = result[4];
+          document.getElementById("training_speed").innerHTML = result[5];
+        };
+
+        /* RIEGEL PREDICTOR */
+        document.getElementById("button_predictor").onclick = function () {
+          var input_hrs = parseInt(
+            document.getElementById("predictor_hrs").value
+          );
+          var input_min = parseInt(
+            document.getElementById("predictor_min").value
+          );
+          var input_sec = parseInt(
+            document.getElementById("predictor_sec").value
+          );
+          var input_org = parseInt(
+            document.getElementById("predictor_org").value
+          );
+          var input_new = parseInt(
+            document.getElementById("predictor_new").value
+          );
+
+          if (input_new == 5000) {
+            document.getElementById("predictor_label").innerHTML =
+              "on a 5K race";
+          } else if (input_new == 8045) {
+            document.getElementById("predictor_label").innerHTML =
+              "on a 5 mile race";
+          } else if (input_new == 10000) {
+            document.getElementById("predictor_label").innerHTML =
+              "on a 10K race";
+          } else if (input_new == 16090) {
+            document.getElementById("predictor_label").innerHTML =
+              "on a 10 mile race";
+          } else if (input_new == 21098) {
+            document.getElementById("predictor_label").innerHTML =
+              "on a half marathon";
+          } else {
+            document.getElementById("predictor_label").innerHTML =
+              "on a marathon";
+          }
+          document.getElementById("predictor_result").innerHTML =
+            predict_riegel(
+              input_hrs,
+              input_min,
+              input_sec,
+              input_org,
+              input_new
+            );
+        };
+
+        /* CAMERON PREDICTOR */
+        document.getElementById("button_cameron").onclick = function () {
+          var input_hrs = parseInt(
+            document.getElementById("cameron_hrs").value
+          );
+          var input_min = parseInt(
+            document.getElementById("cameron_min").value
+          );
+          var input_sec = parseInt(
+            document.getElementById("cameron_sec").value
+          );
+          var input_org = parseInt(
+            document.getElementById("cameron_org").value
+          );
+          var input_new = parseInt(
+            document.getElementById("cameron_new").value
+          );
+
+          if (input_new == 5000) {
+            document.getElementById("cameron_label").innerHTML = "on a 5K race";
+          } else if (input_new == 8045) {
+            document.getElementById("cameron_label").innerHTML =
+              "on a 5 mile race";
+          } else if (input_new == 10000) {
+            document.getElementById("cameron_label").innerHTML =
+              "on a 10K race";
+          } else if (input_new == 16090) {
+            document.getElementById("cameron_label").innerHTML =
+              "on a 10 mile race";
+          } else if (input_new == 21098) {
+            document.getElementById("cameron_label").innerHTML =
+              "on a half marathon";
+          } else {
+            document.getElementById("cameron_label").innerHTML =
+              "on a marathon";
+          }
+          document.getElementById("cameron_result").innerHTML = cameron(
+            input_hrs,
+            input_min,
+            input_sec,
+            input_org,
+            input_new
+          );
+        };
+      };
+    </script>
+    <quillbot-extension-portal></quillbot-extension-portal>
+  </body>
+  <quillbot-extension-root></quillbot-extension-root>
+</html>
